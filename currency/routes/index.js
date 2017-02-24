@@ -9,10 +9,15 @@ router.get('/', function(req, res){
 router.get('/convert', function(req, res){
     var dollars = req.query.dollar_amount;
     var convertTo = req.query.to_currency;
+    var convertFrom = req.query.from_currency;
 
-    var rate = exchangeRates[convertTo];
-    result = dollars * rate;
+    var rateTwo= exchangeRates[convertTo];
+    var rate = exchangeRates[convertFrom];
 
-    res.render('results',  { dollars : dollars, result : result, currency: convertTo});
+    USCurrency =  dollars*rate;
+    result2 = USCurrency/rateTwo;
+
+
+    res.render('results', {dollars: dollars, UsCurrency: USCurrency, result2: result2, currency: convertFrom})
 });
 module.exports = router;
